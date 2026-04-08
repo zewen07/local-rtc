@@ -1,9 +1,9 @@
-# Local RTC CLI
+# Local RTC
 
-一个基于 Node.js + WebRTC DataChannel 的局域网传输工具，可通过 CLI 启动本地服务，并在浏览器中完成文本、文件和文件夹的点对点传输。
+一个基于 Node.js + WebRTC DataChannel 的内网传输工具。你可以通过 CLI 启动本地服务，然后在浏览器里完成文本、文件和文件夹的点对点传输。
 
-- GitHub: `https://github.com/YOUR_GITHUB_USERNAME/local-rtc-cli`
-- npm: `https://www.npmjs.com/package/local-rtc-cli`
+- GitHub: `https://github.com/zewen07/local-rtc`
+- npm: `https://www.npmjs.com/package/local-rtc`
 
 ## 功能特性
 
@@ -21,7 +21,7 @@ npm install
 npm start
 ```
 
-默认启动后会打印：
+启动后会打印：
 
 - `Local: http://localhost:3000`
 - `Recommended: http://你的局域网IP:3000`
@@ -29,14 +29,14 @@ npm start
 ## npm 全局安装
 
 ```bash
-npm install -g local-rtc-cli
+npm install -g local-rtc
 local-rtc
 ```
 
 也可以直接运行：
 
 ```bash
-npx local-rtc-cli
+npx local-rtc
 ```
 
 ## CLI 用法
@@ -69,7 +69,7 @@ local-rtc --host 127.0.0.1 --port 3100
 4. 选择目标设备后，发送文本、文件或文件夹。
 5. 接收端确认后，数据通过 WebRTC 点对点传输。
 
-## 浏览器兼容
+## 浏览器兼容性
 
 - Chrome / Edge 桌面版：优先支持
 - Android Chromium 浏览器：支持
@@ -80,13 +80,9 @@ local-rtc --host 127.0.0.1 --port 3100
 
 建议流程：
 
-1. 在 GitHub 创建公开仓库 `local-rtc-cli`
-2. 更新 `package.json` 中的以下占位地址：
-   - `repository.url`
-   - `homepage`
-   - `bugs.url`
-3. 推送默认分支
-4. 配置仓库描述和 topics，例如：
+1. 在 GitHub 创建公开仓库 `local-rtc`
+2. 推送默认分支
+3. 配置仓库描述和 topics，例如：
    - `webrtc`
    - `lan`
    - `file-transfer`
@@ -103,15 +99,15 @@ local-rtc --host 127.0.0.1 --port 3100
 npm login
 ```
 
-2. 先检查包内容
+2. 检查发布包内容
 
 ```bash
 npm run pack:check
 ```
 
-3. 如果 `local-rtc-cli` 名称已被占用：
-   - 先尝试相近无 scope 名称
-   - 若仍不可用，再切换为 `@your-user/local-rtc-cli`
+3. 如果 `local-rtc` 已被占用：
+   - 先尝试相近的无 scope 名称
+   - 若仍不可用，再切换到 `@zewen07/local-rtc`
 
 4. 发布
 
