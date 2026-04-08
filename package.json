@@ -1,0 +1,49 @@
+{
+  "name": "local-rtc-cli",
+  "version": "1.0.0",
+  "description": "CLI to start a LAN WebRTC transfer tool for text, files, and folders.",
+  "main": "server.js",
+  "bin": {
+    "local-rtc": "./cli.js"
+  },
+  "files": [
+    "cli.js",
+    "server.js",
+    "public",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node cli.js",
+    "dev": "node cli.js",
+    "test": "node --check cli.js && node --check server.js && node --check public/app.js && node cli.js --help && node cli.js --version",
+    "pack:check": "node scripts/pack-check.js"
+  },
+  "keywords": [
+    "webrtc",
+    "lan",
+    "file-transfer",
+    "p2p",
+    "cli",
+    "local-network",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_GITHUB_USERNAME/local-rtc-cli.git"
+  },
+  "homepage": "https://github.com/YOUR_GITHUB_USERNAME/local-rtc-cli#readme",
+  "bugs": {
+    "url": "https://github.com/YOUR_GITHUB_USERNAME/local-rtc-cli/issues"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "ws": "^8.20.0"
+  }
+}

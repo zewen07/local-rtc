@@ -1,0 +1,153 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Local RTC 内网快传</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <div class="hero-orbit hero-orbit--left" aria-hidden="true"></div>
+      <div class="hero-orbit hero-orbit--right" aria-hidden="true"></div>
+      <header class="hero">
+        <div class="hero-copyblock">
+          <p class="eyebrow">Node.js + WebRTC</p>
+          <h1>Local RTC 内网快传</h1>
+          <p class="hero-copy">
+            为同一局域网里的桌面、平板和手机准备的点对点传输面板。
+          </p>
+          <div class="hero-ribbon">
+            <span>文本</span>
+            <span>文件</span>
+            <span>文件夹</span>
+            <span>局域网直传</span>
+          </div>
+        </div>
+        <div class="hero-status">
+          <div class="status-chip" id="socketStatus">连接中</div>
+          <p class="hero-status-copy">发现在线设备后即可发起传输，数据通过 WebRTC 点对点直连。</p>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel identity-panel">
+          <div class="panel-header">
+            <h2>我的设备</h2>
+            <span class="panel-badge" id="deviceTypeBadge">检测中</span>
+          </div>
+          <label class="field">
+            <span>设备名称</span>
+            <input id="deviceNameInput" type="text" maxlength="32" placeholder="例如：客厅 iPad" />
+          </label>
+          <div class="device-meta">
+            <div>
+              <span class="meta-label">设备 ID</span>
+              <code id="deviceIdValue">-</code>
+            </div>
+            <div>
+              <span class="meta-label">能力</span>
+              <span id="capabilitySummary">检测中</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel devices-panel">
+          <div class="panel-header">
+            <h2>在线设备</h2>
+            <span class="panel-badge" id="onlineCount">0 台</span>
+          </div>
+          <div id="devicesList" class="devices-list empty-state">
+            暂无其他在线设备
+          </div>
+        </section>
+
+        <section class="panel transfer-panel">
+          <div class="panel-header">
+            <h2>发送内容</h2>
+            <span class="panel-badge" id="peerStatus">未连接</span>
+          </div>
+
+          <div class="target-card" id="selectedTargetCard">
+            <span class="meta-label">当前目标</span>
+            <strong id="selectedTargetName">未选择</strong>
+            <span id="selectedTargetHint">先选择一台在线设备</span>
+            <button class="ghost-button inline-action hidden" id="clearTargetBtn" type="button">取消选择</button>
+          </div>
+
+          <label class="field">
+            <span>发送文本</span>
+            <textarea id="textInput" rows="4" placeholder="输入你要发送的文字"></textarea>
+          </label>
+          <button class="primary-button" id="sendTextBtn">发送文本</button>
+
+          <div class="picker-grid">
+            <input id="fileInput" type="file" multiple hidden />
+            <input id="folderInput" type="file" webkitdirectory directory multiple hidden />
+            <button class="primary-button picker-button" id="pickFileBtn" type="button">选择文件</button>
+            <button class="primary-button picker-button" id="pickFolderBtn" type="button">选择文件夹</button>
+          </div>
+
+          <p class="inline-hint">
+            大文件会自动分片传输；不支持文件夹上传的浏览器仍可继续发送文本和普通文件。
+          </p>
+        </section>
+
+        <section class="panel tasks-panel">
+          <div class="panel-header">
+            <h2>传输记录</h2>
+            <span class="panel-badge" id="taskCount">0 条</span>
+          </div>
+          <div id="taskList" class="task-list empty-state">
+            还没有传输记录
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast hidden" id="toastMessage" role="status" aria-live="polite"></div>
+
+    <div class="sheet hidden" id="incomingSheet">
+      <div class="sheet-card">
+        <div class="sheet-header">
+          <h3>收到新的传输请求</h3>
+          <button class="ghost-button" id="closeSheetBtn">关闭</button>
+        </div>
+        <p id="incomingSummary"></p>
+        <div class="sheet-actions">
+          <button class="ghost-button" id="rejectTransferBtn">拒绝</button>
+          <button class="primary-button" id="acceptTransferBtn">接受</button>
+        </div>
+      </div>
+    </div>
+
+    <template id="deviceTemplate">
+      <button class="device-card">
+        <div class="device-card__top">
+          <strong class="device-card__name"></strong>
+          <span class="device-card__type"></span>
+        </div>
+        <div class="device-card__bottom">
+          <span class="device-card__caps"></span>
+        </div>
+      </button>
+    </template>
+
+    <template id="taskTemplate">
+      <article class="task-card">
+        <div class="task-card__header">
+          <strong class="task-card__title"></strong>
+          <span class="task-card__status"></span>
+        </div>
+        <div class="task-card__content hidden"></div>
+        <div class="task-card__meta"></div>
+        <div class="progress-track">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="task-card__actions"></div>
+      </article>
+    </template>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
